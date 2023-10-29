@@ -1,0 +1,43 @@
+[package]
+name = "lets-go-solana"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+
+[lib]
+path = "lib.rs"
+
+[dependencies]
+# borsh = "1.1.1"
+borsh = { version = "1.1.1", features = ["derive"] }
+solana-program = "1.17.3"
+
+
+
+# [[bin]]
+# name = "lets-go-solana"
+# path = "lib.rs"
+
+
+# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# rustup default nightly && rustup update
+# rustup component add rustfmt
+# rustup install nightly
+# cargo +nightly bench
+
+## export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
+## export PATH="$HOME/.cargo/env:$PATH"
+
+# cargo init
+# cargo add solana_program
+# cargo add borsh
+# cargo check
+# cargo build
+
+# cargo test
+# cargo test -- --nocapture
+# cargo fmt
+
+
