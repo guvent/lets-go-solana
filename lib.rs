@@ -55,6 +55,9 @@ pub fn process_instruction(
         HelloInstruction::Decrement => {
             greetin_account.counter -= 1;
         }
+        HelloInstruction::Reset => {
+            greetin_account.counter = 0;
+        }
     }
 
     greetin_account.serialize(&mut &mut account.data.borrow_mut()[..])?;
@@ -95,6 +98,7 @@ mod test {
 
         let increment_instruction_data: Vec<u8> = vec![0];
         let decrement_instruction_data: Vec<u8> = vec![1];
+        let reset_instruction_data: Vec<u8> = vec![2];
 
         process_instruction(&program_id, &accounts, &increment_instruction_data).unwrap();
 
@@ -121,6 +125,24 @@ mod test {
                 .unwrap()
                 .counter,
             1
+        );
+
+        process_instruction(&program_id, &accounts, &increment_instruction_data).unwrap();
+
+        assert_eq!(
+            GreetingAccount::try_from_slice(&accounts[0].data.borrow())
+                .unwrap()
+                .counter,
+            2
+        );
+
+        process_instruction(&program_id, &accounts, &reset_instruction_data).unwrap();
+
+        assert_eq!(
+            GreetingAccount::try_from_slice(&accounts[0].data.borrow())
+                .unwrap()
+                .counter,
+            0
         );
     }
 }
